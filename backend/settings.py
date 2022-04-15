@@ -25,19 +25,13 @@ import dj_database_url
 import os
 
 
-SECRET_KEY = 'django-insecure-8qxtvwdm^x1@swb)tl4pwy=d7_+ret8@t%=htl@&*)tq%o^4!-'
+# SECRET_KEY = 'django-insecure-8qxtvwdm^x1@swb)tl4pwy=d7_+ret8@t%=htl@&*)tq%o^4!-'
 
 # SECRET_KEY = os.environ['SECRET_KEY']
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-# SECRET_KEY = config('SECRET_KEY')
-# DEBUG = config('DEBUG', default=False, cast=bool)
-# DATABASES = {
-#     'default': dj_database_url.config(
-#         default=config('DATABASE_URL')
-#     )
-# }
+# DEBUG = True
+
 
 ALLOWED_HOSTS = ['127.0.0.1','ecom-drf.herokuapp.com']
 
@@ -110,12 +104,19 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'PaintingEcommerce',
-        'USER': 'postgres',
-        'PASSWORD': 'techwing',
-        'HOST': '127.0.0.1',
-        'PORT': '5432',
+#         'NAME': 'PaintingEcommerce',
+#         'USER': 'postgres',
+#         'PASSWORD': 'techwing',
+#         'HOST': '127.0.0.1',
+#         'PORT': '5432',
     }
+}
+SECRET_KEY = config('SECRET_KEY')
+DEBUG = config('DEBUG', default=False, cast=bool)
+DATABASES = {
+    'default': dj_database_url.config(
+        default=config('DATABASE_URL')
+    )
 }
 
 PASSWORD_RESET_TIMEOUT=1800 #30mins
